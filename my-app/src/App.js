@@ -4,10 +4,11 @@ import Info from './info'
 import Average from './Average'
 import './App.css';
 import SassComponent from './SassComponent';
+import StyledComponent from './styledComponent';
 
 function App() {
   return (
-    <SassComponent/>
+    <StyledComponent/>
   );
 }
 
