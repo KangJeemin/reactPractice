@@ -1,10 +1,57 @@
-import React from 'react';
+import React , {useState, useRef, useCallback} from 'react';
 import TodoTemplate from './components/TodoTemplate';
+import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
+import { todo } from 'node:test';
 
 function App(props) {
+  const [todos,setTodos]=useState([
+    {
+      id:1,
+      text:'리엑트의 기초 알아보기',
+      checked:true,
+    },
+    {
+      id:2,
+      text:'컴포넌트 스타일링해보기',
+      checked:true,
+    },
+    {
+      id:3,
+      text:'일정 관리 앱 만들어 보기',
+      cheked:false,
+    },
+  ]);
+
+  const nextId = useRef(4);
+
+  const onInsert = useCallback(text=>{
+    const todo = {
+      id: nextId.current,
+      text,
+      checked:false,
+    };
+    setTodos(todos.concat(todo));
+    nextId.current +=1 ;
+  },
+  [todos])
+  
+  const onRemove = useCallback(id=>{
+    setTodos(todos.filter(todo=> todo.id!== id));
+  },[todos])
+
+  const onToggle = useCallback(id=>{
+    setTodos(
+      todos.map(todo=>
+        todo.id===id ? {...todo, checked: !todo.checked } : todo,)
+    );
+  },[todos])
   return (
     <div>
-      <TodoTemplate>Todo App을 만들자!</TodoTemplate>
+      <TodoTemplate>
+        <TodoInsert onInsert={onInsert}/>
+        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+      </TodoTemplate>
     </div>
   );
 }
