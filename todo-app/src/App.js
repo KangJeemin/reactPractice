@@ -1,9 +1,10 @@
 import React from 'react';
+import TodoTemplate from './components/TodoTemplate';
 
 function App(props) {
   return (
     <div>
-      Todo App을 만들자
+      <TodoTemplate>Todo App을 만들자!</TodoTemplate>
     </div>
   );
 }
