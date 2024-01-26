@@ -520,8 +520,9 @@ module.exports = function (webpackEnv) {
                 option:{
                   sassOptions:{
                     includePaths:[paths.appSrc+"/styles"],
-                  }
-                }
+                  },
+                  additionalData:"@import 'utils';",
+                },
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
