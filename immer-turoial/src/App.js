@@ -14,7 +14,7 @@ function App(props) {
   const onChange = useCallback(e=>{
     const {name, value} = e.target;
     setForm(
-      produce(from,draft=>{
+      produce(draft=>{
         draft[name]= value;
       })
       ,[form]);
@@ -29,7 +29,7 @@ function App(props) {
     };
     //array에 새 항복 등록
     setData(
-      produce(data,draft =>{
+      produce(draft =>{
         draft.array.push(info)
       })
 
@@ -45,7 +45,7 @@ function App(props) {
   //항목을 삭제하는 함수
   const onRemove = useCallback(id=>{
     setData(
-      produce(data,draft=>{
+      produce(draft=>{
         draft.array.splice(draft.array.findIndex(info => info.id===id),1)
       })
 
